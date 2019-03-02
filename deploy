@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Adding"
+git add -A > /dev/null
+
+echo "Committing"
+git commit -m "autodeploy" > /dev/null
+
+echo "Pushing to Github"
+git push > /dev/null
+
+echo "Pushing to Heroku"
+git push heroku > /dev/null
+
+echo "DONE!"
