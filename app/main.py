@@ -101,7 +101,7 @@ def dont_hit_enemies(moves, enemies, head):
         moves.remove('up')
     return moves
 
-def dont_get_cornered(moves, head):
+def dont_get_cornered(moves, enemies, head):
     if (head[0] +1, head[1] -1) and (head[0] +1, head[1] +1) and (head[0] +2, head[1]) in enemies and 'right' in moves:
         moves.remove('right')
     if (head[0] -1, head[1] -1) and (head[0] -1, head[1] +1) and (head[0] -2, head[1]) in enemies and 'right' in moves:
