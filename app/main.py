@@ -51,6 +51,7 @@ def move():
 	enemies = []
 	tail = []
 	moves = ['left', 'right', 'up', 'down']
+	last_move = []
 
 	for b in body:
 		tail.append((b['x'],b['y']))
@@ -61,9 +62,12 @@ def move():
 			enemies.append((e['x'],e['y']))
 
 	moves = dont_hit_wall(moves, height, width, head)
-	print("dont hit wall: ", moves)
+	print("Dont hit wall: ", moves)
 	moves = dont_hit_enemies(moves, enemies, head)
-	print("dont hit snacc: ", moves)
+	print("Dont hit snacc: ", moves)
+	move = previous_head(moves, head, body)
+	print('Go straight: ', move)
+
 	return {
 		"move": random.choice(moves)
 	}
@@ -95,6 +99,21 @@ def dont_hit_enemies(moves, enemies, head):
 	if (head[0], head[1] -1) in enemies and 'up' in moves:
 		moves.remove('up')
 	return moves
+
+def previous_head(moves, head, last_move, body):
+	if (head[0] +1, head[1]) == body[1]:
+		last_move.append('left')
+	if (head[0] -1, head[1]) == body[1]:
+		last_move.append('right')
+	if (head[0], head[1] +1) == body[1]:
+		moves.append('up')
+	if (head[0], head[1] -1) == body[1]:
+		moves.append('down')
+	return last_move
+
+def straight_preference(move, moves):
+	if last_move in moves:
+		return move
 
 
 
