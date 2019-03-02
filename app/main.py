@@ -10,53 +10,53 @@ DOWN = 'down'
 
 @bottle.route('/')
 def index():
-    return "<h1>I'm a weenie</h1>"
+	return "<h1>I'm a weenie</h1>"
 
 @bottle.route('/static/<path:path>')
 def static(path):
-    return bottle.static_file(path, root='static/')
+	return bottle.static_file(path, root='static/')
 
 @bottle.post('/ping')
 def ping():
-    return {}
+	return {}
 
 @bottle.post('/start')
 def start():
-    return {
-        "color": '#444444',
-        "taunt": "Sup bod?"
-    }
+	return {
+		"color": '#444444',
+		"taunt": "Sup bod?"
+	}
 
 @bottle.post('/end')
 def end():
-    return {}
+	return {}
 
 
 
 
 @bottle.post('/move')
 def move():
-    data = bottle.request.json
+	data = bottle.request.json
 
-    you = data['you']
-    health = you['health']
-    body = you['body']
-    length = len(body)
+	you = data['you']
+	health = you['health']
+	body = you['body']
+	length = len(body)
 	head = body[0]
-    board = data['board']
+	board = data['board']
 	height = board['height']
 	width = board['width']
-    snakes = board['snakes']
-    food = board['food']
-    enemies = []
+	snakes = board['snakes']
+	food = board['food']
+	enemies = []
 	tail = []
 	moves = ['left', 'right', 'up', 'down']
 
 	for b in body:
 		tail.append((b['x'],b['y']))
 
-    for snake in snakes:
-        enemy_location = snake['body']
+	for snake in snakes:
+		enemy_location = snake['body']
 		for e in enemy_location:
 			enemies.append((e['x'],e['y']))
 
@@ -64,27 +64,27 @@ def move():
 
 
 	#enemy coordinates that match the three potential moves of my snake
-    #own coordinates
+	#own coordinates
 	#the wall
-        #pass
+		#pass
 
-    #def okay_location:
-    #enemy locations that are beside the three potential moves of my snakes
-    #potential locations next to walls
-        #pass
+	#def okay_location:
+	#enemy locations that are beside the three potential moves of my snakes
+	#potential locations next to walls
+		#pass
 
-    #def good_location:
-    #potential locations with no surrounding obstacles
-    #food coordinates
-        #pass
+	#def good_location:
+	#potential locations with no surrounding obstacles
+	#food coordinates
+		#pass
 
-    #def find_food:
-    #returns closest food coordinates and moves towards that
-        #pass
+	#def find_food:
+	#returns closest food coordinates and moves towards that
+		#pass
 
-    return {
-        "move": random.choice(moves)
-    }
+	return {
+		"move": random.choice(moves)
+	}
 
 def dont_hit_wall(moves, height, width, head):
 	#side walls avoidance
@@ -105,9 +105,9 @@ def dont_hit_wall(moves, height, width, head):
 application = bottle.default_app()
 
 if __name__ == '__main__':
-    bottle.run(
-        application,
-        host=os.getenv('IP', '0.0.0.0'),
-        port=os.getenv('PORT', '8080'),
-        debug=os.getenv('DEBUG', True)
-    )
+	bottle.run(
+		application,
+		host=os.getenv('IP', '0.0.0.0'),
+		port=os.getenv('PORT', '8080'),
+		debug=os.getenv('DEBUG', True)
+	)
