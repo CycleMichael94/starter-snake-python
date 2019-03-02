@@ -67,8 +67,8 @@ def move():
     move = previous_head(moves, head, body)
     print('Go straight: ', move)
 
-	if move not in moves:
-		move = random.choice(moves)
+    if move not in moves:
+        move = random.choice(moves)
 
     return {
         "move": move
