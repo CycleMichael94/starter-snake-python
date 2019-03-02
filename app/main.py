@@ -73,8 +73,8 @@ def move():
     print('Eat food! ')
 
     if not move:
-    	move = away_from_walls(moves, height, width, head)
-        print('Go away from walls: ', move)
+        move = away_from_walls(moves, height, width, head)
+        print('Away from walls: ', move)
 
     if not move:
         move = previous_head(moves, head, body)
