@@ -42,7 +42,7 @@ def move():
     health = you['health']
     body = [ (b['x'], b['y']) for b in you['body'] ]
     length = len(body)
-    head = (body[0], body[0])
+    head = (body[0])
     board = data['board']
     height = board['height']
     width = board['width']
