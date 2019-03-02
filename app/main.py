@@ -83,6 +83,7 @@ def move():
     if not move:
         move = random.choice(moves)
 
+	print('Preferred moves: ', move)
     return {
         'move': move
     }
