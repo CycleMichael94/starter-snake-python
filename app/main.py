@@ -65,10 +65,10 @@ def move():
     print('Go straight: ', move)
     move = away_from_walls(moves, height, width, head)
     print('Go away from walls: ', move)
-	move = eat_close_food(moves, head, food)
-	print('Eat food! ')
-	move = dont_get_cornered(moves, head)
-	print = 'Dont get cornered: '
+    move = eat_close_food(moves, head, food)
+    print('Eat food! ')
+    move = dont_get_cornered(moves, head)
+    print = 'Dont get cornered: '
 
     if move not in moves:
         move = random.choice(moves)
