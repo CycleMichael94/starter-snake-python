@@ -10,7 +10,7 @@ DOWN = 'down'
 
 @bottle.route('/')
 def index():
-	return "<h1>I'm Nat and this is my snake</h1>"
+	return "<h1>I'm a weenie</h1>"
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -23,8 +23,8 @@ def ping():
 @bottle.post('/start')
 def start():
 	return {
-		"color": '#AA22AA',
-		"taunt": "My first program, go nice"
+		"color": '#444444',
+		"taunt": "Sup bod?"
 	}
 
 @bottle.post('/end')
@@ -45,7 +45,7 @@ def move():
     board = ['board']
     snakes = board['snakes']
     food = board['food']
-    enemies = set()
+    enemies = []
 
     for snake in snakes:
         enemy_location = snake['body']
