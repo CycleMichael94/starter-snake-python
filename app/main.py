@@ -61,6 +61,7 @@ def move():
 			enemies.append((e['x'],e['y']))
 
 	moves = dont_hit_wall(moves, height, width, head)
+	moves = dont_hit_enemies(moves, height, width, head)
 
 	return {
 		"move": random.choice(moves)
@@ -77,8 +78,9 @@ def dont_hit_wall(moves, height, width, head):
 		moves.remove('down')
 	elif head[1] == 0 and 'up' in moves:
 		moves.remove('up')
+	return moves
 
-def dont_hit_enemies(moves, height, width, head):
+def dont_hit_enemies(moves, enemies, head):
 	#checks side to side for enemy snakes
 	if (head[0] +1, head[1]) in enemies and 'right' in moves:
 		moves.remove('right')
@@ -89,7 +91,6 @@ def dont_hit_enemies(moves, height, width, head):
 		moves.remove('down')
 	if (head[1] -1, head[0]) in enemies and 'up' in moves:
 		moves.remove('up')
-
 	return moves
 
 
