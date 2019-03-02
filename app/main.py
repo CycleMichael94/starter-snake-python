@@ -90,9 +90,9 @@ def dont_hit_enemies(moves, enemies, head):
 	#checks up and down for enemy snakes
 	print("ENEMIES: ", enemies)
 	print("HEAD: ", head)
-	if (head[1] +1, head[0]) in enemies and 'down' in moves:
+	if (head[0], head[1] +1) in enemies and 'down' in moves:
 		moves.remove('down')
-	if (head[1] -1, head[0]) in enemies and 'up' in moves:
+	if (head[0], head[1] -1) in enemies and 'up' in moves:
 		moves.remove('up')
 	return moves
 
