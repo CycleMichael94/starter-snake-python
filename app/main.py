@@ -125,6 +125,8 @@ def dont_get_cornered(moves, enemies, head):
         moves.remove('up')
     return moves
 
+######################################################################
+
 #if food is in adjacent cells eat it
 def eat_close_food(moves, head, food):
     if (head[0] +1, head[1]) in food and 'right' in moves:
