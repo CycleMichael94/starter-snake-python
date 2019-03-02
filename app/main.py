@@ -103,7 +103,7 @@ def dont_hit_enemies(moves, enemies, head):
     return moves
 
 def previous_head(moves, head, body):
-    last_move = 'right'
+    last_move = None
     if (head[0] +1, head[1]) == body[1]:
         last_move = 'left'
     if (head[0] -1, head[1]) == body[1]:
