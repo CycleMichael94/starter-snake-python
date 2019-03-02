@@ -160,7 +160,8 @@ def previous_head(moves, head, body):
         last_move = 'up'
     if (head[0], head[1] -1) == body[1]:
         last_move = 'down'
-    return last_move
+    if last_move in moves:
+        return last_move
 
 #prefers straight play in open-ended situations
 def straight_preference(move, moves):
