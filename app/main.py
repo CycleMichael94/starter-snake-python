@@ -146,9 +146,9 @@ def away_from_walls(moves, height, width, head):
 		return 'right'
 	if head[0] == width and 'left' in moves:
 		return 'left'
-	if head[1] > height -3 and 'down' in moves:
+	if head[1] == 0 and 'down' in moves:
 		return 'down'
-	if head[1] < height +3 and 'up' in moves:
+	if head[1] == height and 'up' in moves:
 		return 'up'
 
 #gets the previous move
