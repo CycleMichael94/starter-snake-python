@@ -65,24 +65,24 @@ def move():
     for own_snake in body:
         pass
 
-    def bad_location:
+    #def bad_location:
     #enemy coordinates that match the three potential moves of my snake
     #own coordinates
-        pass
+        #pass
 
-    def okay_location:
+    #def okay_location:
     #enemy locations that are beside the three potential moves of my snakes
     #potential locations next to walls
-        pass
+        #pass
 
-    def good_location:
+    #def good_location:
     #potential locations with no surrounding obstacles
     #food coordinates
-        pass
+        #pass
 
-    def find_food:
+    #def find_food:
     #returns closest food coordinates and moves towards that
-        pass
+        #pass
 
             return move_response(direction)
 
