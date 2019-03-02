@@ -89,10 +89,10 @@ def move():
 		'move': move
 	}
 
-print(moves)
-
 #function avoids walls
 def dont_hit_wall(moves, height, width, head):
+	print("1", moves)
+	print("2", head)
 	if head[0] == width -1 and 'right' in moves:
 		moves.remove('right')
 	elif head[0] == 0 and 'left' in moves:
