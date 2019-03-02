@@ -60,8 +60,6 @@ def move():
 		for e in enemy_location:
 			enemies.append((e['x'],e['y']))
 
-	enemies.append(tail)
-
 	moves = dont_hit_wall(moves, height, width, head)
 	moves = dont_hit_enemies(moves, enemies, head)
 
@@ -89,6 +87,8 @@ def dont_hit_enemies(moves, enemies, head):
 	if (head[0] -1, head[1]) in enemies and 'left' in moves:
 		moves.remove('left')
 	#checks up and down for enemy snakes
+	print("ENEMIES: ", enemies)
+	print("HEAD: ", head)
 	if (head[1] +1, head[0]) in enemies and 'down' in moves:
 		moves.remove('down')
 	if (head[1] -1, head[0]) in enemies and 'up' in moves:
