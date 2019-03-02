@@ -68,7 +68,7 @@ def move():
     move = eat_close_food(moves, head, food)
     print('Eat food! ')
     move = dont_get_cornered(moves, head)
-    print = 'Dont get cornered: '
+    print('Dont get cornered: ', moves)
 
     if move not in moves:
         move = random.choice(moves)
