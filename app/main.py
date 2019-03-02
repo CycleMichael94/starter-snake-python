@@ -65,8 +65,8 @@ def move():
     moves = dont_get_cornered(moves, enemies, head)
     print('(Cornered) Safe Moves: ', moves)
 
-    moves = away_from_walls(moves, height, width, head)
-    print('(Wall Away) Good Directions: ', moves)
+    #moves = away_from_walls(moves, height, width, head)
+    #print('(Wall Away) Good Directions: ', moves)
 
     # Restricting
     ################################################
