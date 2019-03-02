@@ -10,26 +10,26 @@ DOWN = 'down'
 
 @bottle.route('/')
 def index():
-	return "<h1>I'm a weenie</h1>"
+    return "<h1>I'm a weenie</h1>"
 
 @bottle.route('/static/<path:path>')
 def static(path):
-	return bottle.static_file(path, root='static/')
+    return bottle.static_file(path, root='static/')
 
 @bottle.post('/ping')
 def ping():
-	return {}
+    return {}
 
 @bottle.post('/start')
 def start():
-	return {
-		"color": '#444444',
-		"taunt": "Sup bod?"
-	}
+    return {
+        "color": '#444444',
+        "taunt": "Sup bod?"
+    }
 
 @bottle.post('/end')
 def end():
-	return {}
+    return {}
 
 
 
@@ -73,18 +73,18 @@ def move():
     #returns closest food coordinates and moves towards that
         #pass
 
-	return {
-		"move": move
-	}
+    return {
+        "move": move
+    }
 
 
 
 application = bottle.default_app()
 
 if __name__ == '__main__':
-	bottle.run(
-		application,
-		host=os.getenv('IP', '0.0.0.0'),
-		port=os.getenv('PORT', '8080'),
-		debug=os.getenv('DEBUG', True)
-	)
+    bottle.run(
+        application,
+        host=os.getenv('IP', '0.0.0.0'),
+        port=os.getenv('PORT', '8080'),
+        debug=os.getenv('DEBUG', True)
+    )
