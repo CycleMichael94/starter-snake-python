@@ -47,7 +47,7 @@ def move():
     height = board['height']
     width = board['width']
     snakes = board['snakes']
-    food = board['food']
+    food = [ (f['x'], f['y']) for f in board['food'] ]
     enemies = []
     tail = []
     moves = ['left', 'right', 'up', 'down']
@@ -87,14 +87,10 @@ def dont_hit_wall(moves, height, width, head):
     return moves
 
 def dont_hit_enemies(moves, enemies, head):
-    #checks side to side for enemy snakes
     if (head[0] +1, head[1]) in enemies and 'right' in moves:
         moves.remove('right')
     if (head[0] -1, head[1]) in enemies and 'left' in moves:
         moves.remove('left')
-    #checks up and down for enemy snakes
-    print("ENEMIES: ", enemies)
-    print("HEAD: ", head)
     if (head[0], head[1] +1) in enemies and 'down' in moves:
         moves.remove('down')
     if (head[0], head[1] -1) in enemies and 'up' in moves:
@@ -118,6 +114,16 @@ def straight_preference(move, moves):
         return [move]
     else:
         return moves
+
+def eat_close_food(moves, head, food):
+    if (head[0] +1, head[1]) in food and 'right' in moves:
+        return 'right'
+    if (head[0] -1, head[1]) in food and 'left' in moves:
+        return 'left'
+    if (head[0], head[1] +1) in food and 'down' in moves:
+        return 'down'
+    if (head[0], head[1] -1) in food and 'up' in moves:
+        return 'up'
 
 def away_from_walls(moves, height, width, head):
     if len(moves) <= 2:
