@@ -51,7 +51,6 @@ def move():
     enemies = []
     tail = []
     moves = ['left', 'right', 'up', 'down']
-	okay_moves = ['left', 'right', 'up', 'down']
 
     for snake in snakes:
         enemy_location = snake['body']
