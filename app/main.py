@@ -42,21 +42,30 @@ def move():
     health = you['health']
     body = you['body']
     length = len(body)
+	head = body[0]
     board = data['board']
+	height = board['height']
+	width = board['width']
     snakes = board['snakes']
     food = board['food']
     enemies = []
+	tail = []
+	moves = ['left', 'right', 'up', 'down']
+
+	for b in body:
+		tail.append((b['x'],b['y']))
 
     for snake in snakes:
         enemy_location = snake['body']
-        enemies.append(enemy_location)
+		for e in enemy_location:
+			enemies.append((e['x'],e['y']))
 
-    for own_snake in body:
-        pass
+	moves = dont_hit_wall(moves, height, width, head)
 
-    #def bad_location:
-    #enemy coordinates that match the three potential moves of my snake
+
+	#enemy coordinates that match the three potential moves of my snake
     #own coordinates
+	#the wall
         #pass
 
     #def okay_location:
@@ -74,8 +83,22 @@ def move():
         #pass
 
     return {
-        "move": "right"
+        "move": random.choice(moves)
     }
+
+def dont_hit_wall(moves, height, width, head):
+	#side walls avoidance
+	if head[0] == width -1 and 'right' in moves:
+		moves.remove('right')
+	elif head[0] == 0 and 'left' in moves:
+		moves.remove('left')
+	#ceiling and floor avoidance
+	if head[1] == height -1 and 'down' in moves:
+		moves.remove('down')
+	elif head[1] == 0 and 'up' in moves:
+		moves.remove('up')
+
+	return moves
 
 
 
