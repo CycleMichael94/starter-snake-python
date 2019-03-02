@@ -51,6 +51,7 @@ def move():
     enemies = []
     tail = []
     moves = ['left', 'right', 'up', 'down']
+	okay_moves = ['left', 'right', 'up', 'down']
 
     for snake in snakes:
         enemy_location = snake['body']
@@ -63,6 +64,8 @@ def move():
     print("Dont hit snacc: ", moves)
     move = previous_head(moves, head, body)
     print('Go straight: ', move)
+	move = away_from_walls(moves, height, width, head)
+	print('Go away from walls: ', move)
 
     if move not in moves:
         move = random.choice(moves)
@@ -117,6 +120,16 @@ def straight_preference(move, moves):
     else:
         return moves
 
+def away_from_walls(moves, height, width, head):
+	if head[0] > width -3 and 'right' in moves:
+		moves.remove('right')
+	if head[0] < width +3 and 'left' in moves:
+		moves.remove('left')
+	if head[1] > height -3 and 'down' in moves:
+		moves.remove('down')
+	if head[1] < height +3 and 'up' in moves:
+		moves.remove('up')
+	return moves
 
 
 application = bottle.default_app()
