@@ -67,7 +67,7 @@ def move():
     print('Go away from walls: ', move)
     move = eat_close_food(moves, head, food)
     print('Eat food! ')
-    move = dont_get_cornered(moves, head)
+    move = dont_get_cornered(moves, enemies, head)
     print('Dont get cornered: ', moves)
 
     if move not in moves:
