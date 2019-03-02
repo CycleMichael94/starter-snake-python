@@ -102,13 +102,13 @@ def dont_hit_enemies(moves, enemies, head):
 
 def previous_head(moves, head, body):
 	if (head[0] +1, head[1]) == body[1]:
-		last_move.append('left')
+		last_move = ['left']
 	if (head[0] -1, head[1]) == body[1]:
-		last_move.append('right')
+		last_move = ['right']
 	if (head[0], head[1] +1) == body[1]:
-		last_move.append('up')
+		last_move = ['up']
 	if (head[0], head[1] -1) == body[1]:
-		last_move.append('down')
+		last_move = ['down']
 	return last_move
 
 def straight_preference(move, moves):
