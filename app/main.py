@@ -61,9 +61,9 @@ def move():
 			enemies.append((e['x'],e['y']))
 
 	moves = dont_hit_wall(moves, height, width, head)
-	print(moves)
+	print("dont hit wall: ", moves)
 	moves = dont_hit_enemies(moves, enemies, head)
-	print(moves)
+	print("dont hit snacc: ", moves)
 	return {
 		"move": random.choice(moves)
 	}
