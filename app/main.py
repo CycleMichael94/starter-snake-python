@@ -60,8 +60,10 @@ def move():
 		for e in enemy_location:
 			enemies.append((e['x'],e['y']))
 
+	everyone = enemies.append(tail)
+
 	moves = dont_hit_wall(moves, height, width, head)
-	moves = dont_hit_enemies(moves, enemies, head)
+	moves = dont_hit_enemies(moves, everyone, head)
 
 	return {
 		"move": random.choice(moves)
@@ -80,16 +82,16 @@ def dont_hit_wall(moves, height, width, head):
 		moves.remove('up')
 	return moves
 
-def dont_hit_enemies(moves, enemies, head):
+def dont_hit_enemies(moves, everyone, head):
 	#checks side to side for enemy snakes
-	if (head[0] +1, head[1]) in enemies and 'right' in moves:
+	if (head[0] +1, head[1]) in everyone and 'right' in moves:
 		moves.remove('right')
-	if (head[0] -1, head[1]) in enemies and 'left' in moves:
+	if (head[0] -1, head[1]) in everyone and 'left' in moves:
 		moves.remove('left')
 	#checks up and down for enemy snakes
-	if (head[1] +1, head[0]) in enemies and 'down' in moves:
+	if (head[1] +1, head[0]) in everyone and 'down' in moves:
 		moves.remove('down')
-	if (head[1] -1, head[0]) in enemies and 'up' in moves:
+	if (head[1] -1, head[0]) in everyone and 'up' in moves:
 		moves.remove('up')
 	return moves
 
