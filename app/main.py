@@ -125,18 +125,18 @@ def dont_get_cornered(moves, enemies, head):
     return moves
 
 #move away from walls in open ended situations
-def away_from_walls(moves, height, width, head):
-    if len(moves) <= 2:
-        return moves
-    if head[0] > width -3 and 'right' in moves:
-        moves.remove('right')
-    if head[0] < width +3 and 'left' in moves:
-        moves.remove('left')
-    if head[1] > height -3 and 'down' in moves:
-        moves.remove('down')
-    if head[1] < height +3 and 'up' in moves:
-        moves.remove('up')
-    return moves
+#def away_from_walls(moves, height, width, head):
+#    if len(moves) <= 2:
+#        return moves
+#    if head[0] > width -3 and 'right' in moves:
+#        moves.remove('right')
+#    if head[0] < width +3 and 'left' in moves:
+#        moves.remove('left')
+#    if head[1] > height -3 and 'down' in moves:
+#        moves.remove('down')
+#    if head[1] < height +3 and 'up' in moves:
+#        moves.remove('up')
+#    return moves
 
 #if food is in adjacent cells eat it
 def eat_close_food(moves, head, food):
