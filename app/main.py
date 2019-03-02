@@ -10,7 +10,7 @@ DOWN = 'down'
 
 @bottle.route('/')
 def index():
-    return "<h1>I'm a weenie</h1>"
+    return "<h1>Hello World</h1>"
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -24,7 +24,6 @@ def ping():
 def start():
     return {
         "color": '#444444',
-        "taunt": "Sup bod?"
     }
 
 @bottle.post('/end')
@@ -61,14 +60,14 @@ def move():
     print('Dont hit wall: ', moves)
     moves = dont_hit_enemies(moves, enemies, head)
     print('Dont hit snacc: ', moves)
-    move = previous_head(moves, head, body)
-    print('Go straight: ', move)
-    move = away_from_walls(moves, height, width, head)
-    print('Go away from walls: ', move)
-    move = eat_close_food(moves, head, food)
-    print('Eat food! ')
     move = dont_get_cornered(moves, enemies, head)
     print('Dont get cornered: ', moves)
+    move = eat_close_food(moves, head, food)
+    print('Eat food! ')
+    move = away_from_walls(moves, height, width, head)
+    print('Go away from walls: ', move)
+    move = previous_head(moves, head, body)
+    print('Go straight: ', move)
 
     if move not in moves:
         move = random.choice(moves)
@@ -76,20 +75,19 @@ def move():
     return {
         'move': move
     }
-
+#function avoids walls
 def dont_hit_wall(moves, height, width, head):
-    #side walls avoidance
     if head[0] == width -1 and 'right' in moves:
         moves.remove('right')
     elif head[0] == 0 and 'left' in moves:
         moves.remove('left')
-    #ceiling and floor avoidance
     if head[1] == height -1 and 'down' in moves:
         moves.remove('down')
     elif head[1] == 0 and 'up' in moves:
         moves.remove('up')
     return moves
 
+#function avoids enemy coordinates
 def dont_hit_enemies(moves, enemies, head):
     if (head[0] +1, head[1]) in enemies and 'right' in moves:
         moves.remove('right')
@@ -101,6 +99,7 @@ def dont_hit_enemies(moves, enemies, head):
         moves.remove('up')
     return moves
 
+#function avoids situations where it would be cornered even if the space is open
 def dont_get_cornered(moves, enemies, head):
     if (head[0] +1, head[1] -1) and (head[0] +1, head[1] +1) and (head[0] +2, head[1]) in enemies and 'right' in moves:
         moves.remove('right')
@@ -110,25 +109,9 @@ def dont_get_cornered(moves, enemies, head):
         moves.remove('down')
     if (head[0] +1, head[1] -1) and (head[0] -1, head[1] -1) and (head[0], head[1] -2) in enemies and 'up' in moves:
         moves.remove('up')
+    return moves
 
-def previous_head(moves, head, body):
-    last_move = None
-    if (head[0] +1, head[1]) == body[1]:
-        last_move = 'left'
-    if (head[0] -1, head[1]) == body[1]:
-        last_move = 'right'
-    if (head[0], head[1] +1) == body[1]:
-        last_move = 'up'
-    if (head[0], head[1] -1) == body[1]:
-        last_move = 'down'
-    return last_move
-
-def straight_preference(move, moves):
-    if move in moves:
-        return [move]
-    else:
-        return moves
-
+#if food is in adjacent cells eat it
 def eat_close_food(moves, head, food):
     if (head[0] +1, head[1]) in food and 'right' in moves:
         return 'right'
@@ -139,6 +122,7 @@ def eat_close_food(moves, head, food):
     if (head[0], head[1] -1) in food and 'up' in moves:
         return 'up'
 
+#move away from walls in open ended situations
 def away_from_walls(moves, height, width, head):
     if len(moves) <= 2:
         return moves
@@ -152,6 +136,25 @@ def away_from_walls(moves, height, width, head):
         moves.remove('up')
     return moves
 
+#gets the previous move
+def previous_head(moves, head, body):
+    last_move = None
+    if (head[0] +1, head[1]) == body[1]:
+        last_move = 'left'
+    if (head[0] -1, head[1]) == body[1]:
+        last_move = 'right'
+    if (head[0], head[1] +1) == body[1]:
+        last_move = 'up'
+    if (head[0], head[1] -1) == body[1]:
+        last_move = 'down'
+    return last_move
+
+#prefers straight play in open-ended situations
+def straight_preference(move, moves):
+    if move in moves:
+        return [move]
+    else:
+        return moves
 
 application = bottle.default_app()
 
