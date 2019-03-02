@@ -65,15 +65,16 @@ def move():
     moves = dont_get_cornered(moves, enemies, head)
     print('(Cornered) Safe Moves: ', moves)
 
-    #moves = away_from_walls(moves, height, width, head)
-    #print('(Wall Away) Good Directions: ', moves)
-
     # Restricting
     ################################################
     # Choosing
 
     move = eat_close_food(moves, head, food)
     print('Eat food! ', move)
+
+    if not move:
+    	move = away_from_walls(moves, height, width, head)
+        print('Away from walls: ', move)
 
     if not move:
         move = previous_head(moves, head, body)
@@ -124,20 +125,6 @@ def dont_get_cornered(moves, enemies, head):
         moves.remove('up')
     return moves
 
-#move away from walls in open ended situations
-#def away_from_walls(moves, height, width, head):
-#    if len(moves) <= 2:
-#        return moves
-#    if head[0] > width -3 and 'right' in moves:
-#        moves.remove('right')
-#    if head[0] < width +3 and 'left' in moves:
-#        moves.remove('left')
-#    if head[1] > height -3 and 'down' in moves:
-#        moves.remove('down')
-#    if head[1] < height +3 and 'up' in moves:
-#        moves.remove('up')
-#    return moves
-
 #if food is in adjacent cells eat it
 def eat_close_food(moves, head, food):
     if (head[0] +1, head[1]) in food and 'right' in moves:
@@ -147,6 +134,17 @@ def eat_close_food(moves, head, food):
     if (head[0], head[1] +1) in food and 'down' in moves:
         return 'down'
     if (head[0], head[1] -1) in food and 'up' in moves:
+        return 'up'
+
+#move away from walls in open ended situations
+def away_from_walls(moves, height, width, head):
+    if head[0] = 0 and 'right' in moves:
+        return 'right'
+    if head[0] = width and 'left' in moves:
+        return 'left'
+    if head[1] > height -3 and 'down' in moves:
+        return 'down'
+    if head[1] < height +3 and 'up' in moves:
         return 'up'
 
 #gets the previous move
