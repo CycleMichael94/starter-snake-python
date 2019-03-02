@@ -52,9 +52,6 @@ def move():
     tail = []
     moves = ['left', 'right', 'up', 'down']
 
-    for b in body:
-        tail.append((b['x'],b['y']))
-
     for snake in snakes:
         enemy_location = snake['body']
         for e in enemy_location:
