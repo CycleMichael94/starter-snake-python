@@ -70,7 +70,7 @@ def move():
     # Choosing
 
     move = eat_close_food(moves, head, food)
-    print('Eat food! ')
+    print('Eat food! ', move)
 
     if not move:
         move = away_from_walls(moves, height, width, head)
