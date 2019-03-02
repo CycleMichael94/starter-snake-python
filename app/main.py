@@ -62,26 +62,6 @@ def move():
 
 	moves = dont_hit_wall(moves, height, width, head)
 
-
-	#enemy coordinates that match the three potential moves of my snake
-	#own coordinates
-	#the wall
-		#pass
-
-	#def okay_location:
-	#enemy locations that are beside the three potential moves of my snakes
-	#potential locations next to walls
-		#pass
-
-	#def good_location:
-	#potential locations with no surrounding obstacles
-	#food coordinates
-		#pass
-
-	#def find_food:
-	#returns closest food coordinates and moves towards that
-		#pass
-
 	return {
 		"move": random.choice(moves)
 	}
@@ -97,6 +77,18 @@ def dont_hit_wall(moves, height, width, head):
 		moves.remove('down')
 	elif head[1] == 0 and 'up' in moves:
 		moves.remove('up')
+
+def dont_hit_enemies(moves, height, width, head):
+	#checks side to side for enemy snakes
+	if head[0] +1, head[1] in enemies and 'right' in moves:
+		moves.remove('right')
+	if head[0] -1, head[1] in enemies and 'left' in moves:
+		moves.remove('left')
+	#checks up and down for enemy snakes
+	if head[1] +1, head[0] in enemies and 'down' in moves:
+		moves.remove('down')
+	if head[1] -1, head[0] in enemies and 'up' in moves:
+		moves.remove.('up')
 
 	return moves
 
