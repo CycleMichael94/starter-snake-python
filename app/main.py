@@ -68,7 +68,7 @@ def move():
     print('Go straight: ', move)
 
     return {
-        "move": random.choice(straight_preference(moves))
+        "move": random.choice(straight_preference(move, moves))
     }
 
 def dont_hit_wall(moves, height, width, head):
