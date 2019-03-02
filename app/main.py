@@ -106,9 +106,9 @@ def previous_head(moves, head, body):
 	if (head[0] -1, head[1]) == body[1]:
 		last_move.append('right')
 	if (head[0], head[1] +1) == body[1]:
-		moves.append('up')
+		last_move.append('up')
 	if (head[0], head[1] -1) == body[1]:
-		moves.append('down')
+		last_move.append('down')
 	return last_move
 
 def straight_preference(move, moves):
