@@ -74,7 +74,7 @@ def move():
         #pass
 
     return {
-        "move": move
+        "move": "right"
     }
 
 
