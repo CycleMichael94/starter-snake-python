@@ -120,9 +120,9 @@ def straight_preference(move, moves):
         return moves
 
 def away_from_walls(moves, height, width, head):
-	if len(moves) == 2:
-		return moves
-	if head[0] > width -3 and 'right' in moves:
+    if len(moves) == 2:
+        return moves
+    if head[0] > width -3 and 'right' in moves:
         moves.remove('right')
     if head[0] < width +3 and 'left' in moves:
         moves.remove('left')
