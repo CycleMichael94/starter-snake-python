@@ -57,13 +57,16 @@ def move():
             enemies.append((e['x'],e['y']))
 
     moves = dont_hit_wall(moves, height, width, head)
-    print('Dont hit wall: ', moves)
+    print('(Wall) Safe Moves: ', moves)
 
     moves = dont_hit_enemies(moves, enemies, head)
-    print('Dont hit snacc: ', moves)
+    print('(Enemies) Safe Moves: ', moves)
 
     moves = dont_get_cornered(moves, enemies, head)
-    print('Dont get cornered: ', moves)
+    print('(Cornered) Safe Moves: ', moves)
+
+    moves = away_from_walls(moves, height, width, head)
+    print('(Wall Away) Good Directions: ', moves)
 
     # Restricting
     ################################################
@@ -73,10 +76,6 @@ def move():
     print('Eat food! ', move)
 
     if not move:
-        move = away_from_walls(moves, height, width, head)
-        print('Away from walls: ', move)
-
-    if not move:
         move = previous_head(moves, head, body)
         print('Go straight: ', move)
 
@@ -84,6 +83,7 @@ def move():
         move = random.choice(moves)
 
     print('Preferred moves: ', move)
+
     return {
         'move': move
     }
@@ -124,17 +124,6 @@ def dont_get_cornered(moves, enemies, head):
         moves.remove('up')
     return moves
 
-#if food is in adjacent cells eat it
-def eat_close_food(moves, head, food):
-    if (head[0] +1, head[1]) in food and 'right' in moves:
-        return 'right'
-    if (head[0] -1, head[1]) in food and 'left' in moves:
-        return 'left'
-    if (head[0], head[1] +1) in food and 'down' in moves:
-        return 'down'
-    if (head[0], head[1] -1) in food and 'up' in moves:
-        return 'up'
-
 #move away from walls in open ended situations
 def away_from_walls(moves, height, width, head):
     if len(moves) <= 2:
@@ -148,6 +137,17 @@ def away_from_walls(moves, height, width, head):
     if head[1] < height +3 and 'up' in moves:
         moves.remove('up')
     return moves
+
+#if food is in adjacent cells eat it
+def eat_close_food(moves, head, food):
+    if (head[0] +1, head[1]) in food and 'right' in moves:
+        return 'right'
+    if (head[0] -1, head[1]) in food and 'left' in moves:
+        return 'left'
+    if (head[0], head[1] +1) in food and 'down' in moves:
+        return 'down'
+    if (head[0], head[1] -1) in food and 'up' in moves:
+        return 'up'
 
 #gets the previous move
 def previous_head(moves, head, body):
