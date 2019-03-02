@@ -112,7 +112,7 @@ def previous_head(moves, head, body):
     return last_move
 
 def straight_preference(move, moves):
-    if last_move in moves:
+    if move in moves:
         return [move]
     else:
         return moves
