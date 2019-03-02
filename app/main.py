@@ -38,11 +38,11 @@ def end():
 def move():
     data = bottle.request.json
 
-    you = data.get('you')
+    you = data['you']
     health = you['health']
     body = you['body']
     length = len(body)
-    board = ['board']
+    board = data['board']
     snakes = board['snakes']
     food = board['food']
     enemies = []
