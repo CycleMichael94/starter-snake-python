@@ -58,18 +58,29 @@ def move():
 
     moves = dont_hit_wall(moves, height, width, head)
     print('Dont hit wall: ', moves)
-    moves = dont_hit_enemies(moves, enemies, head)
-    print('Dont hit snacc: ', moves)
-    move = dont_get_cornered(moves, enemies, head)
-    print('Dont get cornered: ', moves)
-    move = eat_close_food(moves, head, food)
-    print('Eat food! ')
-    move = away_from_walls(moves, height, width, head)
-    print('Go away from walls: ', move)
-    move = previous_head(moves, head, body)
-    print('Go straight: ', move)
 
-    if move not in moves:
+	moves = dont_hit_enemies(moves, enemies, head)
+    print('Dont hit snacc: ', moves)
+
+    moves = dont_get_cornered(moves, enemies, head)
+    print('Dont get cornered: ', moves)
+
+	# Restricting
+	################################################
+	# Choosing
+
+	move = eat_close_food(moves, head, food)
+    print('Eat food! ')
+
+	if not move:
+    	move = away_from_walls(moves, height, width, head)
+		print('Go away from walls: ', move)
+
+	if not move:
+		move = previous_head(moves, head, body)
+	    print('Go straight: ', move)
+
+	if not move:
         move = random.choice(moves)
 
     return {
