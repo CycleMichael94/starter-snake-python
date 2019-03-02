@@ -88,7 +88,7 @@ def dont_hit_enemies(moves, height, width, head):
 	if (head[1] +1, head[0]) in enemies and 'down' in moves:
 		moves.remove('down')
 	if (head[1] -1, head[0]) in enemies and 'up' in moves:
-		moves.remove.('up')
+		moves.remove('up')
 
 	return moves
 
