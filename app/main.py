@@ -51,6 +51,7 @@ def move():
 	enemies = []
 	tail = []
 	moves = ['left', 'right', 'up', 'down']
+	last_move = []
 
 	for b in body:
 		tail.append((b['x'],b['y']))
