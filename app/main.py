@@ -80,14 +80,14 @@ def dont_hit_wall(moves, height, width, head):
 
 def dont_hit_enemies(moves, height, width, head):
 	#checks side to side for enemy snakes
-	if head[0] +1, head[1] in enemies and 'right' in moves:
+	if (head[0] +1, head[1]) in enemies and 'right' in moves:
 		moves.remove('right')
-	if head[0] -1, head[1] in enemies and 'left' in moves:
+	if (head[0] -1, head[1]) in enemies and 'left' in moves:
 		moves.remove('left')
 	#checks up and down for enemy snakes
-	if head[1] +1, head[0] in enemies and 'down' in moves:
+	if (head[1] +1, head[0]) in enemies and 'down' in moves:
 		moves.remove('down')
-	if head[1] -1, head[0] in enemies and 'up' in moves:
+	if (head[1] -1, head[0]) in enemies and 'up' in moves:
 		moves.remove.('up')
 
 	return moves
