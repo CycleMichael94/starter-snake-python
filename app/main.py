@@ -142,13 +142,13 @@ def eat_close_food(moves, head, food):
 
 #move away from walls in open ended situations
 def away_from_walls(moves, height, width, head):
-	if head[0] == 0 or 1 and 'right' in moves:
+	if head[0] == 0 and 'right' in moves:
 		return 'right'
-	if head[0] == width or width -1 and 'left' in moves:
+	if head[0] == width or and 'left' in moves:
 		return 'left'
-	if head[1] == 0 or 1 and 'down' in moves:
+	if head[1] == 0 and 'down' in moves:
 		return 'down'
-	if head[1] == height or height -1 and 'up' in moves:
+	if head[1] == height and 'up' in moves:
 		return 'up'
 
 #gets the previous move
